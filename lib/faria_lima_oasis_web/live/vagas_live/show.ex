@@ -20,8 +20,9 @@ defmodule FariaLimaOasisWeb.VagasLive.Show do
     ~H"""
     <Layouts.app {assigns}>
       <.header>
-        header
+        {@vaga.title}
       </.header>
+      <img src={@vaga.pdf_url} alt="Vaga" class="h-2xl" />
     </Layouts.app>
     """
   end

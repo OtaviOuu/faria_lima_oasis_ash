@@ -51,6 +51,7 @@ defmodule FariaLimaOasisWeb.Layouts do
               </ul>
             </details>
           </li>
+          <li>{theme_toggle(assigns)}</li>
         </ul>
       </div>
     </header>

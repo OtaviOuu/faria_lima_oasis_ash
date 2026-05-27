@@ -30,7 +30,7 @@ defmodule FariaLimaOasisWeb.VagasLive.Index do
         <:col :let={vaga} field="vagas" sort>
           {Enum.map(vaga.areas, & &1.acronym) |> Enum.join(", ")}
         </:col>
-        <:col :let={vaga} field="insert_at" sort>{vaga.inserted_at}</:col>
+        <:col :let={vaga} field="inserted_at" sort>{vaga.inserted_at}</:col>
       </Cinder.collection>
     </Layouts.app>
     """
