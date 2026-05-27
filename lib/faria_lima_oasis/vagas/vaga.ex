@@ -3,7 +3,7 @@ defmodule FariaLimaOasis.Vagas.Vaga do
     otp_app: :faria_lima_oasis,
     domain: FariaLimaOasis.Vagas,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshAdmin.Resource]
+    extensions: [AshAdmin.Resource, AshPhoenix]
 
   admin do
     label_field :title

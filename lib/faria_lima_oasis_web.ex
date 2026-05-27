@@ -91,6 +91,12 @@ defmodule FariaLimaOasisWeb do
       alias Phoenix.LiveView.JS
       alias FariaLimaOasisWeb.Layouts
 
+      # Live view and live components callbacks helpers
+      def ok(socket), do: {:ok, socket}
+      def halt(socket), do: {:halt, socket}
+      def continue(socket), do: {:cont, socket}
+      def noreply(socket), do: {:noreply, socket}
+
       # Routes generation with the ~p sigil
       unquote(verified_routes())
     end

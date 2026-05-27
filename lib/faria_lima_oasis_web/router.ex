@@ -35,6 +35,7 @@ defmodule FariaLimaOasisWeb.Router do
       #
       # If an authenticated user must *not* be present:
       # on_mount {FariaLimaOasisWeb.LiveUserAuth, :live_no_user}
+      live "/vagas/criar", VagasLive.New, :index
     end
   end
 
