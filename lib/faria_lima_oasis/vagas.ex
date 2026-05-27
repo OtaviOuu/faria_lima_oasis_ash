@@ -10,5 +10,6 @@ defmodule FariaLimaOasis.Vagas do
   resources do
     resource FariaLimaOasis.Vagas.Vaga
     resource FariaLimaOasis.Vagas.Area
+    resource FariaLimaOasis.Vagas.VagaArea
   end
 end

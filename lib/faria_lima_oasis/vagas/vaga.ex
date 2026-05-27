@@ -2,7 +2,12 @@ defmodule FariaLimaOasis.Vagas.Vaga do
   use Ash.Resource,
     otp_app: :faria_lima_oasis,
     domain: FariaLimaOasis.Vagas,
-    data_layer: AshPostgres.DataLayer
+    data_layer: AshPostgres.DataLayer,
+    extensions: [AshAdmin.Resource]
+
+  admin do
+    label_field :title
+  end
 
   postgres do
     table "vagas"
