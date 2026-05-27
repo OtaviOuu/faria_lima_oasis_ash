@@ -9,6 +9,10 @@ defmodule FariaLimaOasis.Vagas.VagaArea do
     repo FariaLimaOasis.Repo
   end
 
+  resource do
+    require_primary_key? false
+  end
+
   actions do
     defaults [:read, :update, :destroy, :create]
     default_accept [:vaga_id, :area_id]
