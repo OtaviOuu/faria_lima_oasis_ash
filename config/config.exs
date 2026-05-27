@@ -55,7 +55,7 @@ config :spark,
 config :faria_lima_oasis,
   ecto_repos: [FariaLimaOasis.Repo],
   generators: [timestamp_type: :utc_datetime],
-  ash_domains: [FariaLimaOasis.Accounts]
+  ash_domains: [FariaLimaOasis.Vagas, FariaLimaOasis.Accounts]
 
 # Configure the endpoint
 config :faria_lima_oasis, FariaLimaOasisWeb.Endpoint,
