@@ -22,8 +22,15 @@ defmodule FariaLimaOasis.Vagas.Area do
   attributes do
     uuid_primary_key :id
 
-    attribute :name, :string
-    attribute :acronym, :string
+    attribute :name, :string do
+      public? true
+      allow_nil? false
+    end
+
+    attribute :acronym, :string do
+      public? true
+      allow_nil? false
+    end
 
     timestamps()
   end

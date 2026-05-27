@@ -32,9 +32,20 @@ defmodule FariaLimaOasis.Vagas.Vaga do
   attributes do
     uuid_primary_key :id
 
-    attribute :title, :string
-    attribute :text_content, :string
-    attribute :pdf_url, :string
+    attribute :title, :string do
+      public? true
+      allow_nil? false
+    end
+
+    attribute :text_content, :string do
+      public? true
+      allow_nil? false
+    end
+
+    attribute :pdf_url, :string do
+      public? true
+      allow_nil? false
+    end
 
     timestamps()
   end

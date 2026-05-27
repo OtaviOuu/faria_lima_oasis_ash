@@ -36,6 +36,14 @@ defmodule FariaLimaOasisWeb.VagasLive.New do
     """
   end
 
+  def handle_event("validate", %{"form" => vaga_attrs}, socket) do
+    form = AshPhoenix.Form.validate(socket.assigns.vaga_form, vaga_attrs)
+
+    socket
+    |> assign(:vaga_form, form)
+    |> noreply()
+  end
+
   def handle_event("create_vaga", %{"form" => vaga_attrs}, socket) do
     case AshPhoenix.Form.submit(socket.assigns.vaga_form, params: vaga_attrs) do
       {:ok, _vaga} ->
