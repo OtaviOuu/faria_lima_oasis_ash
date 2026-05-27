@@ -37,11 +37,11 @@ defmodule FariaLimaOasisWeb.Layouts do
     ~H"""
     <header class="navbar bg-base-100 shadow-sm">
       <div class="flex-1">
-        <a class="btn btn-ghost text-xl">daisyUI</a>
+        <.link navigate={~p"/vagas"} class="btn btn-ghost text-xl">FLO</.link>
       </div>
       <div class="flex-none">
         <ul class="menu menu-horizontal px-1">
-          <li><a>Link</a></li>
+          <li><.link :if={@current_user}>{@current_user.email}</.link></li>
           <li>
             <details>
               <summary>Parent</summary>

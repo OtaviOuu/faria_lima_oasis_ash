@@ -1,10 +1,21 @@
 defmodule FariaLimaOasisWeb.VagasLive.New do
   use FariaLimaOasisWeb, :live_view
 
+  on_mount {FariaLimaOasisWeb.LiveUserAuth, :live_user_required}
+
   def mount(_params, _session, socket) do
-    socket
-    |> assign_new_vaga_form()
-    |> ok()
+    case FariaLimaOasis.Vagas.can_create_vaga?(socket.assigns.current_user) do
+      true ->
+        socket
+        |> assign_new_vaga_form()
+        |> ok()
+
+      _ ->
+        socket
+        |> put_flash(:error, "Você não tem permissão para criar vagas.")
+        |> push_navigate(to: "/vagas")
+        |> ok()
+    end
   end
 
   def assign_new_vaga_form(socket) do

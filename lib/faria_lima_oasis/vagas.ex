@@ -10,6 +10,7 @@ defmodule FariaLimaOasis.Vagas do
   resources do
     resource FariaLimaOasis.Vagas.Vaga do
       define :create_vaga, action: :create
+      define :get_vaga, action: :read, get_by: :id
     end
 
     resource FariaLimaOasis.Vagas.Area do

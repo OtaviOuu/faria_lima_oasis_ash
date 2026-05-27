@@ -3,7 +3,8 @@ defmodule FariaLimaOasis.Vagas.Vaga do
     otp_app: :faria_lima_oasis,
     domain: FariaLimaOasis.Vagas,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshAdmin.Resource, AshPhoenix]
+    authorizers: [Ash.Policy.Authorizer],
+    extensions: [AshAdmin.Resource, AshPhoenix, AshAuthentication]
 
   admin do
     label_field :title
@@ -26,6 +27,16 @@ defmodule FariaLimaOasis.Vagas.Vaga do
       end
 
       change manage_relationship(:areas, type: :append_and_remove)
+    end
+  end
+
+  policies do
+    policy action_type([:create, :update, :destroy]) do
+      authorize_if actor_attribute_equals(:email, "oi@gmail.com")
+    end
+
+    policy action_type(:read) do
+      authorize_if always()
     end
   end
 
