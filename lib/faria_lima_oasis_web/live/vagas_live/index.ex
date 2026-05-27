@@ -29,6 +29,8 @@ defmodule FariaLimaOasisWeb.VagasLive.Index do
         <:filter field="text_content" />
 
         <:col :let={vaga} field="title" search sort>{vaga.title}</:col>
+        <:col :let={vaga} field="type" sort>{vaga.type}</:col>
+
         <:col :let={vaga} field="vagas" sort label="Areas">
           <div class="flex flex-wrap gap-2">
             <span :for={area <- vaga.areas} class="badge">

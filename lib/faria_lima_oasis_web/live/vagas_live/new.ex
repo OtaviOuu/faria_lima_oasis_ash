@@ -19,7 +19,9 @@ defmodule FariaLimaOasisWeb.VagasLive.New do
   end
 
   def assign_new_vaga_form(socket) do
-    form = FariaLimaOasis.Vagas.form_to_create_vaga() |> to_form()
+    form =
+      FariaLimaOasis.Vagas.form_to_create_vaga(actor: socket.assigns.current_user) |> to_form()
+
     areas_options = FariaLimaOasis.Vagas.list_areas!() |> Enum.map(&{&1.name, &1.id})
 
     socket
@@ -34,6 +36,12 @@ defmodule FariaLimaOasisWeb.VagasLive.New do
         <.input field={@vaga_form[:title]} label="Título" />
         <.input field={@vaga_form[:text_content]} label="Conteúdo" />
         <.input field={@vaga_form[:pdf_url]} label="URL do PDF" />
+        <.input
+          field={@vaga_form[:type]}
+          label="Tipo"
+          type="select"
+          options={FariaLimaOasis.Vagas.Type.values()}
+        />
         <.input
           field={@vaga_form[:areas]}
           type="select"

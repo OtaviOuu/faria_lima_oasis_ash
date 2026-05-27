@@ -17,10 +17,10 @@ defmodule FariaLimaOasis.Vagas.Vaga do
 
   actions do
     defaults [:read, :update, :destroy]
-    default_accept [:title, :text_content, :pdf_url]
+    default_accept [:title, :text_content, :pdf_url, :type]
 
     create :create do
-      accept [:title, :text_content, :pdf_url]
+      accept [:title, :text_content, :pdf_url, :type]
 
       argument :areas, {:array, :uuid} do
         default []
@@ -54,6 +54,11 @@ defmodule FariaLimaOasis.Vagas.Vaga do
     end
 
     attribute :pdf_url, :string do
+      public? true
+      allow_nil? false
+    end
+
+    attribute :type, FariaLimaOasis.Vagas.Type do
       public? true
       allow_nil? false
     end
