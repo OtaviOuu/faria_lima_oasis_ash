@@ -27,4 +27,12 @@ defmodule FariaLimaOasis.Vagas.Area do
 
     timestamps()
   end
+
+  relationships do
+    many_to_many :vagas, FariaLimaOasis.Vagas.Vaga do
+      through FariaLimaOasis.Vagas.VagaArea
+      destination_attribute :id
+      source_attribute :id
+    end
+  end
 end
