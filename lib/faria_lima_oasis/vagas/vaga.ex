@@ -68,4 +68,10 @@ defmodule FariaLimaOasis.Vagas.Vaga do
       destination_attribute_on_join_resource :area_id
     end
   end
+
+  calculations do
+    calculate :inserted_at_humanized,
+              :string,
+              expr(fragment("to_char(?, 'DD/MM/YYYY')", inserted_at))
+  end
 end

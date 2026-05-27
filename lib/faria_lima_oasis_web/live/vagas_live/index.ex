@@ -22,15 +22,23 @@ defmodule FariaLimaOasisWeb.VagasLive.Index do
         </:actions>
       </.header>
       <Cinder.collection
-        query={FariaLimaOasis.Vagas.Vaga |> Ash.Query.load(:areas)}
+        query={FariaLimaOasis.Vagas.Vaga |> Ash.Query.load([:areas, :inserted_at_humanized])}
         page_size={[default: 25, options: [10, 25, 50, 100]]}
         click={fn vaga -> JS.navigate(~p"/vagas/#{vaga.id}") end}
       >
+        <:filter field="text_content" />
+
         <:col :let={vaga} field="title" search sort>{vaga.title}</:col>
-        <:col :let={vaga} field="vagas" sort>
-          {Enum.map(vaga.areas, & &1.acronym) |> Enum.join(", ")}
+        <:col :let={vaga} field="vagas" sort label="Areas">
+          <div class="flex flex-wrap gap-2">
+            <span :for={area <- vaga.areas} class="badge">
+              {area.acronym}
+            </span>
+          </div>
         </:col>
-        <:col :let={vaga} field="inserted_at" sort>{vaga.inserted_at}</:col>
+        <:col :let={vaga} label="Criação" field="inserted_at_humanized" sort>
+          {vaga.inserted_at_humanized}
+        </:col>
       </Cinder.collection>
     </Layouts.app>
     """
