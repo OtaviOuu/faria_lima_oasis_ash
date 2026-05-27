@@ -10,25 +10,12 @@ defmodule FariaLimaOasis.Vagas.VagaArea do
   end
 
   actions do
-    defaults [:read, :update, :destroy]
-
-    create :create do
-      accept [:vaga_id, :area_id]
-
-      change manage_relationship(:vaga, type: :append)
-      change manage_relationship(:area, type: :append)
-    end
+    defaults [:read, :update, :destroy, :create]
+    default_accept [:vaga_id, :area_id]
   end
 
   relationships do
-    belongs_to :vaga, FariaLimaOasis.Vagas.Vaga do
-      destination_attribute :id
-      source_attribute :vaga_id
-    end
-
-    belongs_to :area, FariaLimaOasis.Vagas.Area do
-      destination_attribute :id
-      source_attribute :area_id
-    end
+    belongs_to :vaga, FariaLimaOasis.Vagas.Vaga
+    belongs_to :area, FariaLimaOasis.Vagas.Area
   end
 end

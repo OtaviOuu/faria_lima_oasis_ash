@@ -31,8 +31,8 @@ defmodule FariaLimaOasis.Vagas.Area do
   relationships do
     many_to_many :vagas, FariaLimaOasis.Vagas.Vaga do
       through FariaLimaOasis.Vagas.VagaArea
-      destination_attribute :id
-      source_attribute :id
+      source_attribute_on_join_resource :area_id
+      destination_attribute_on_join_resource :vaga_id
     end
   end
 end

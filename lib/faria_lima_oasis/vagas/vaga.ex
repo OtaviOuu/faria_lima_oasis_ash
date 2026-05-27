@@ -15,8 +15,18 @@ defmodule FariaLimaOasis.Vagas.Vaga do
   end
 
   actions do
-    defaults [:read, :create, :update, :destroy]
+    defaults [:read, :update, :destroy]
     default_accept [:title, :text_content, :pdf_url]
+
+    create :create do
+      accept [:title, :text_content, :pdf_url]
+
+      argument :areas, {:array, :uuid} do
+        default []
+      end
+
+      change manage_relationship(:areas, type: :append_and_remove)
+    end
   end
 
   attributes do
@@ -32,8 +42,8 @@ defmodule FariaLimaOasis.Vagas.Vaga do
   relationships do
     many_to_many :areas, FariaLimaOasis.Vagas.Area do
       through FariaLimaOasis.Vagas.VagaArea
-      destination_attribute :id
-      source_attribute :id
+      source_attribute_on_join_resource :vaga_id
+      destination_attribute_on_join_resource :area_id
     end
   end
 end
