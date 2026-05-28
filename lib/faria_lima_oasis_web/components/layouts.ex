@@ -41,7 +41,36 @@ defmodule FariaLimaOasisWeb.Layouts do
       </div>
       <div class="flex-none">
         <ul class="menu menu-horizontal px-1 flex items-center gap-4">
-          <li><.link :if={@current_user}>{@current_user.email}</.link></li>
+          <li :if={@current_user}>
+            <.link>{@current_user.email}</.link>
+          </li>
+
+          <%= if @current_user do %>
+            <%= if @current_user.is_admin do %>
+              <li>
+                <.link navigate={~p"/adm"} class="btn btn-sm">
+                  Admin
+                </.link>
+              </li>
+            <% end %>
+
+            <li>
+              <.link
+                navigate={~p"/sign-out"}
+                method="delete"
+                class="btn btn-sm"
+              >
+                Sair
+              </.link>
+            </li>
+          <% else %>
+            <li>
+              <.link navigate={~p"/sign-in"} class="btn btn-sm">
+                Entrar
+              </.link>
+            </li>
+          <% end %>
+
           <li>{theme_toggle(assigns)}</li>
         </ul>
       </div>

@@ -17,7 +17,7 @@ defmodule FariaLimaOasisWeb.AuthController do
     |> store_in_session(user)
     # If your resource has a different name, update the assign name here (i.e :current_admin)
     |> assign(:current_user, user)
-    |> put_flash(:info, message)
+    # |> put_flash(:info, message)
     |> redirect(to: return_to)
   end
 
@@ -49,7 +49,7 @@ defmodule FariaLimaOasisWeb.AuthController do
 
     conn
     |> clear_session(:faria_lima_oasis)
-    |> put_flash(:info, "You are now signed out")
+    # |> put_flash(:info, "You are now signed out")
     |> redirect(to: return_to)
   end
 end

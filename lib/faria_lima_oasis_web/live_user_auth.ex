@@ -36,4 +36,19 @@ defmodule FariaLimaOasisWeb.LiveUserAuth do
       {:cont, assign(socket, :current_user, nil)}
     end
   end
+
+  def on_mount(:live_admin_required, _params, _session, socket) do
+    current_user = socket.assigns[:current_user]
+
+    if current_user && current_user.is_admin do
+      {:cont, socket}
+    else
+      socket =
+        socket
+        |> Phoenix.LiveView.put_flash(:error, "Unauthorized!")
+        |> Phoenix.LiveView.redirect(to: ~p"/")
+
+      {:halt, socket}
+    end
+  end
 end

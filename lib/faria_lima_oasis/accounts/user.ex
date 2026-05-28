@@ -86,6 +86,11 @@ defmodule FariaLimaOasis.Accounts.User do
       change {AshAuthentication.Strategy.Password.HashPasswordChange, strategy_name: :password}
     end
 
+    update :change_admin_status do
+      description "Change a user's admin status. Only an admin can perform this action."
+      accept [:is_admin]
+    end
+
     read :sign_in_with_password do
       description "Attempt to sign in using a email and password."
       get? true
@@ -243,6 +248,7 @@ defmodule FariaLimaOasis.Accounts.User do
       sensitive? true
     end
 
+    attribute :is_admin, :boolean, public?: true, default: false
     attribute :confirmed_at, :utc_datetime_usec
   end
 

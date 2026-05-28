@@ -4,7 +4,7 @@ defmodule FariaLimaOasis.Vagas.Vaga do
     domain: FariaLimaOasis.Vagas,
     data_layer: AshPostgres.DataLayer,
     authorizers: [Ash.Policy.Authorizer],
-    extensions: [AshAdmin.Resource, AshPhoenix, AshAuthentication]
+    extensions: [AshAdmin.Resource, AshPhoenix]
 
   admin do
     label_field :title

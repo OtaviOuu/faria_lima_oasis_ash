@@ -15,7 +15,7 @@ defmodule FariaLimaOasisWeb.VagasLive.Index do
         query={
           FariaLimaOasis.Vagas.Vaga |> Ash.Query.load([:areas, :inserted_at_humanized, :empresa])
         }
-        page_size={[default: 10]}
+        page_size={[default: 7]}
         click={fn vaga -> JS.navigate(~p"/vagas/#{vaga.id}") end}
       >
         <:col :let={vaga} field="empresa.name" label="Empresa" sort search>
@@ -67,21 +67,6 @@ defmodule FariaLimaOasisWeb.VagasLive.Index do
                 theme={controls.theme}
                 target={controls.target}
               />
-            </div>
-            <div class="flex flex-row gap-2">
-              <.button
-                :if={FariaLimaOasis.Vagas.can_create_vaga?(@current_user)}
-                navigate={~p"/vagas/criar"}
-              >
-                Nova vaga
-              </.button>
-
-              <.button
-                :if={FariaLimaOasis.Vagas.can_create_vaga?(@current_user)}
-                navigate={~p"/vagas/criar"}
-              >
-                Nova vaga
-              </.button>
             </div>
           </div>
         </:controls>
