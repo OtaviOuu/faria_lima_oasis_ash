@@ -40,6 +40,7 @@ defmodule FariaLimaOasisWeb.AreasLive.New do
         socket
         |> put_flash(:info, "Área criada com sucesso!")
         |> push_navigate(to: ~p"/adm")
+        |> noreply()
 
       {:error, form} ->
         socket
