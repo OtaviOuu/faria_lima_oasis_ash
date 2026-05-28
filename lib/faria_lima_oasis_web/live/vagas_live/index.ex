@@ -23,7 +23,7 @@ defmodule FariaLimaOasisWeb.VagasLive.Index do
       </.header>
       <Cinder.collection
         query={FariaLimaOasis.Vagas.Vaga |> Ash.Query.load([:areas, :inserted_at_humanized])}
-        page_size={[default: 25, options: [10, 25, 50, 100]]}
+        page_size={[default: 10, options: [10, 25, 50, 100]]}
         click={fn vaga -> JS.navigate(~p"/vagas/#{vaga.id}") end}
       >
         <:filter field="text_content" />

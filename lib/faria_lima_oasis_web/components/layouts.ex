@@ -40,17 +40,8 @@ defmodule FariaLimaOasisWeb.Layouts do
         <.link navigate={~p"/vagas"} class="btn btn-ghost text-xl">FLO</.link>
       </div>
       <div class="flex-none">
-        <ul class="menu menu-horizontal px-1">
+        <ul class="menu menu-horizontal px-1 flex items-center gap-4">
           <li><.link :if={@current_user}>{@current_user.email}</.link></li>
-          <li>
-            <details>
-              <summary>Parent</summary>
-              <ul class="bg-base-100 rounded-t-none p-2">
-                <li><a>Link 1</a></li>
-                <li><a>Link 2</a></li>
-              </ul>
-            </details>
-          </li>
           <li>{theme_toggle(assigns)}</li>
         </ul>
       </div>
