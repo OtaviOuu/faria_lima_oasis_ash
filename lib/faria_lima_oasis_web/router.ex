@@ -37,7 +37,11 @@ defmodule FariaLimaOasisWeb.Router do
       # on_mount {FariaLimaOasisWeb.LiveUserAuth, :live_no_user}
       live "/", VagasLive.Index, :index
       live "/vagas", VagasLive.Index, :index
+
       live "/vagas/criar", VagasLive.New, :index
+      live "/areas/criar", AreasLive.New, :index
+      live "/empresas/criar", EmpresasLive.New, :index
+
       live "/vagas/:vaga_id", VagasLive.Show, :index
       live "/adm", AdmLive, :index
     end

@@ -15,12 +15,14 @@ defmodule FariaLimaOasis.Vagas do
 
     resource FariaLimaOasis.Vagas.Area do
       define :list_areas, action: :read
+      define :create_area, action: :create
     end
 
     resource FariaLimaOasis.Vagas.VagaArea
 
     resource FariaLimaOasis.Vagas.Empresa do
       define :list_empresas, action: :read
+      define :create_empresa, action: :create
     end
   end
 end
