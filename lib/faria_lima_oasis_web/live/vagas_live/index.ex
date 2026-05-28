@@ -4,6 +4,8 @@ defmodule FariaLimaOasisWeb.VagasLive.Index do
   on_mount {FariaLimaOasisWeb.LiveUserAuth, :live_user_optional}
 
   def mount(_params, _session, socket) do
+    Gettext.put_locale("pt_BR")
+
     socket
     |> ok()
   end
@@ -43,7 +45,9 @@ defmodule FariaLimaOasisWeb.VagasLive.Index do
         >
           <div class="flex flex-row gap-1">
             <span :for={area <- vaga.areas} class="badge-sm badge">
-              {area.acronym}
+              <div class="tooltip" data-tip={area.name}>
+                {area.acronym}
+              </div>
             </span>
           </div>
         </:col>
