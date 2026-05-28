@@ -248,6 +248,11 @@ defmodule FariaLimaOasis.Accounts.User do
       sensitive? true
     end
 
+    attribute :avatar_url, :string do
+      default "/images/default_profile_pic.jpg"
+      public? true
+    end
+
     attribute :is_admin, :boolean, public?: true, default: false
     attribute :confirmed_at, :utc_datetime_usec
   end

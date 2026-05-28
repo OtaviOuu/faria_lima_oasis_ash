@@ -41,27 +41,51 @@ defmodule FariaLimaOasisWeb.Layouts do
       </div>
       <div class="flex-none">
         <ul class="menu menu-horizontal px-1 flex items-center gap-4">
-          <li :if={@current_user}>
-            <.link>{@current_user.email}</.link>
-          </li>
-
+          <li>{theme_toggle(assigns)}</li>
           <%= if @current_user do %>
-            <%= if @current_user.is_admin do %>
-              <li>
-                <.link navigate={~p"/adm"} class="btn btn-sm">
-                  Admin
-                </.link>
-              </li>
-            <% end %>
+            <li :if={@current_user}>
+              <div class="dropdown dropdown-end">
+                <div
+                  tabindex="0"
+                  class="btn btn-ghost btn-circle avatar"
+                >
+                  <div class="w-12 rounded-full ring-2 ring-primary ring-offset-2 ring-offset-base-100">
+                    <img
+                      src={@current_user.avatar_url}
+                      alt="User avatar"
+                    />
+                  </div>
+                </div>
 
-            <li>
-              <.link
-                navigate={~p"/sign-out"}
-                method="delete"
-                class="btn btn-sm"
-              >
-                Sair
-              </.link>
+                <ul
+                  tabindex="0"
+                  class="dropdown-content menu menu-sm bg-base-100 rounded-box z-50 mt-3 w-56 p-2 shadow-lg"
+                >
+                  <li>
+                    <.link>{@current_user.email}</.link>
+                  </li>
+
+                  <%= if @current_user.is_admin do %>
+                    <li>
+                      <.link navigate={~p"/adm"}>
+                        Admin
+                      </.link>
+                    </li>
+                  <% end %>
+
+                  <li>
+                    <.link>
+                      Configurações
+                    </.link>
+                  </li>
+
+                  <li>
+                    <.link navigate={~p"/sign-out"} class="text-error">
+                      Logout
+                    </.link>
+                  </li>
+                </ul>
+              </div>
             </li>
           <% else %>
             <li>
@@ -70,8 +94,6 @@ defmodule FariaLimaOasisWeb.Layouts do
               </.link>
             </li>
           <% end %>
-
-          <li>{theme_toggle(assigns)}</li>
         </ul>
       </div>
     </header>
