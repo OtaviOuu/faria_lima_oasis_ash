@@ -22,12 +22,15 @@ defmodule FariaLimaOasisWeb.VagasLive.Index do
         </:actions>
       </.header>
       <Cinder.collection
-        query={FariaLimaOasis.Vagas.Vaga |> Ash.Query.load([:areas, :inserted_at_humanized])}
+        query={
+          FariaLimaOasis.Vagas.Vaga |> Ash.Query.load([:areas, :inserted_at_humanized, :empresa])
+        }
         page_size={[default: 10]}
         click={fn vaga -> JS.navigate(~p"/vagas/#{vaga.id}") end}
       >
         <:col :let={vaga} field="title" search sort>{vaga.title}</:col>
         <:col :let={vaga} field="type" sort filter={:multi_select}>{vaga.type}</:col>
+        <:col :let={vaga} field="empresa.name" sort search>{vaga.empresa.name}</:col>
 
         <:col
           :let={vaga}
@@ -37,7 +40,7 @@ defmodule FariaLimaOasisWeb.VagasLive.Index do
             type: :multi_select,
             options:
               Enum.map(FariaLimaOasis.Vagas.list_areas!(), fn area ->
-                {area.acronym, area.id}
+                {area.name, area.id}
               end)
           ]}
         >

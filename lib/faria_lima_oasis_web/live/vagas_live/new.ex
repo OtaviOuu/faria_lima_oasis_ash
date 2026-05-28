@@ -37,6 +37,17 @@ defmodule FariaLimaOasisWeb.VagasLive.New do
         <.input field={@vaga_form[:text_content]} label="Conteúdo" />
         <.input field={@vaga_form[:pdf_url]} label="URL do PDF" />
         <.input
+          field={@vaga_form[:empresa_id]}
+          label="Empresa"
+          type="select"
+          options={
+            Enum.map(FariaLimaOasis.Vagas.list_empresas!(), fn empresa ->
+              {empresa.name, empresa.id}
+            end)
+          }
+        />
+
+        <.input
           field={@vaga_form[:type]}
           label="Tipo"
           type="select"

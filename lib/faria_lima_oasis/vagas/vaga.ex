@@ -20,7 +20,7 @@ defmodule FariaLimaOasis.Vagas.Vaga do
     default_accept [:title, :text_content, :pdf_url, :type]
 
     create :create do
-      accept [:title, :text_content, :pdf_url, :type]
+      accept [:title, :text_content, :pdf_url, :type, :empresa_id]
 
       argument :areas, {:array, :uuid} do
         allow_nil? false
@@ -71,6 +71,11 @@ defmodule FariaLimaOasis.Vagas.Vaga do
       through FariaLimaOasis.Vagas.VagaArea
       source_attribute_on_join_resource :vaga_id
       destination_attribute_on_join_resource :area_id
+    end
+
+    belongs_to :empresa, FariaLimaOasis.Vagas.Empresa do
+      destination_attribute :id
+      source_attribute :empresa_id
     end
   end
 

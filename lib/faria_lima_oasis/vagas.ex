@@ -18,5 +18,9 @@ defmodule FariaLimaOasis.Vagas do
     end
 
     resource FariaLimaOasis.Vagas.VagaArea
+
+    resource FariaLimaOasis.Vagas.Empresa do
+      define :list_empresas, action: :read
+    end
   end
 end
