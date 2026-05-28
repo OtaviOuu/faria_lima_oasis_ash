@@ -16,7 +16,7 @@ defmodule FariaLimaOasis.Vagas.Empresa do
 
   actions do
     defaults [:read, :create, :update, :destroy]
-    default_accept [:name]
+    default_accept [:name, :logo_url]
   end
 
   attributes do
@@ -25,6 +25,11 @@ defmodule FariaLimaOasis.Vagas.Empresa do
     attribute :name, :string do
       public? true
       allow_nil? false
+    end
+
+    attribute :logo_url, :string do
+      public? true
+      allow_nil? true
     end
 
     timestamps()

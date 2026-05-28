@@ -28,9 +28,16 @@ defmodule FariaLimaOasisWeb.VagasLive.Index do
         page_size={[default: 10]}
         click={fn vaga -> JS.navigate(~p"/vagas/#{vaga.id}") end}
       >
+        <:col :let={vaga} field="empresa.name" label="Empresa" sort search>
+          <div class="avatar">
+            <div class="mask mask-squircle w-12">
+              <img src={vaga.empresa.logo_url} />
+            </div>
+          </div>
+        </:col>
+
         <:col :let={vaga} field="title" search sort>{vaga.title}</:col>
         <:col :let={vaga} field="type" sort filter={:multi_select}>{vaga.type}</:col>
-        <:col :let={vaga} field="empresa.name" sort search>{vaga.empresa.name}</:col>
 
         <:col
           :let={vaga}
