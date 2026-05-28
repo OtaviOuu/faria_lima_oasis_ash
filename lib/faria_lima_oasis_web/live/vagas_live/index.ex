@@ -11,16 +11,6 @@ defmodule FariaLimaOasisWeb.VagasLive.Index do
   def render(assigns) do
     ~H"""
     <Layouts.app {assigns}>
-      <.header>
-        <:actions>
-          <.button
-            :if={FariaLimaOasis.Vagas.can_create_vaga?(@current_user)}
-            navigate={~p"/vagas/criar"}
-          >
-            Nova vaga
-          </.button>
-        </:actions>
-      </.header>
       <Cinder.collection
         query={
           FariaLimaOasis.Vagas.Vaga |> Ash.Query.load([:areas, :inserted_at_humanized, :empresa])
@@ -77,6 +67,21 @@ defmodule FariaLimaOasisWeb.VagasLive.Index do
                 theme={controls.theme}
                 target={controls.target}
               />
+            </div>
+            <div class="flex flex-row gap-2">
+              <.button
+                :if={FariaLimaOasis.Vagas.can_create_vaga?(@current_user)}
+                navigate={~p"/vagas/criar"}
+              >
+                Nova vaga
+              </.button>
+
+              <.button
+                :if={FariaLimaOasis.Vagas.can_create_vaga?(@current_user)}
+                navigate={~p"/vagas/criar"}
+              >
+                Nova vaga
+              </.button>
             </div>
           </div>
         </:controls>
