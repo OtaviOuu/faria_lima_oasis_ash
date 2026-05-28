@@ -23,7 +23,7 @@ defmodule FariaLimaOasis.Vagas.Vaga do
       accept [:title, :text_content, :pdf_url, :type]
 
       argument :areas, {:array, :uuid} do
-        default []
+        allow_nil? false
       end
 
       change manage_relationship(:areas, type: :append_and_remove)

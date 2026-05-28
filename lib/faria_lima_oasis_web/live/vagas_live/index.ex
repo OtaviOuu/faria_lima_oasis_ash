@@ -23,17 +23,26 @@ defmodule FariaLimaOasisWeb.VagasLive.Index do
       </.header>
       <Cinder.collection
         query={FariaLimaOasis.Vagas.Vaga |> Ash.Query.load([:areas, :inserted_at_humanized])}
-        page_size={[default: 10, options: [10, 25, 50, 100]]}
+        page_size={[default: 10]}
         click={fn vaga -> JS.navigate(~p"/vagas/#{vaga.id}") end}
       >
-        <:filter field="text_content" />
-
         <:col :let={vaga} field="title" search sort>{vaga.title}</:col>
-        <:col :let={vaga} field="type" sort>{vaga.type}</:col>
+        <:col :let={vaga} field="type" sort filter={:multi_select}>{vaga.type}</:col>
 
-        <:col :let={vaga} field="vagas" sort label="Areas">
-          <div class="flex flex-wrap gap-2">
-            <span :for={area <- vaga.areas} class="badge">
+        <:col
+          :let={vaga}
+          field="areas"
+          label="Areas"
+          filter={[
+            type: :multi_select,
+            options:
+              Enum.map(FariaLimaOasis.Vagas.list_areas!(), fn area ->
+                {area.acronym, area.id}
+              end)
+          ]}
+        >
+          <div class="flex flex-row gap-1">
+            <span :for={area <- vaga.areas} class="badge-sm badge">
               {area.acronym}
             </span>
           </div>
@@ -41,6 +50,26 @@ defmodule FariaLimaOasisWeb.VagasLive.Index do
         <:col :let={vaga} label="Criação" field="inserted_at_humanized" sort>
           {vaga.inserted_at_humanized}
         </:col>
+        <:controls :let={controls}>
+          <div class="flex flex-col gap-3">
+            <div class="w-full">
+              <Cinder.Controls.render_search
+                search={controls.search}
+                theme={controls.theme}
+                target={controls.target}
+              />
+            </div>
+
+            <div class="flex flex-wrap gap-2">
+              <Cinder.Controls.render_filter
+                :for={{_name, filter} <- controls.filters}
+                filter={filter}
+                theme={controls.theme}
+                target={controls.target}
+              />
+            </div>
+          </div>
+        </:controls>
       </Cinder.collection>
     </Layouts.app>
     """
