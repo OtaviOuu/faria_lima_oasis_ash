@@ -10,7 +10,7 @@ defmodule FariaLimaOasisWeb.VagasLive.Show do
   end
 
   def assign_vaga(socket, vaga_id) do
-    vaga = FariaLimaOasis.Vagas.get_vaga!(vaga_id, load: [:areas])
+    vaga = FariaLimaOasis.Vagas.get_vaga!(vaga_id, load: [:areas, :empresa])
 
     socket
     |> assign(:vaga, vaga)
@@ -20,7 +20,12 @@ defmodule FariaLimaOasisWeb.VagasLive.Show do
     ~H"""
     <Layouts.app {assigns}>
       <.header>
-        {@vaga.title}
+        <div class="avatar">
+          <div class="w-32 rounded">
+            <img src={@vaga.empresa.logo_url} />
+          </div>
+        </div>
+        {@vaga.empresa.name} - {@vaga.title}
       </.header>
       <img src={@vaga.pdf_url} alt="Vaga" class="h-2xl" />
     </Layouts.app>

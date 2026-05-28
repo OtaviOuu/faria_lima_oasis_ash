@@ -30,7 +30,7 @@ defmodule FariaLimaOasisWeb.VagasLive.Index do
       >
         <:col :let={vaga} field="empresa.name" label="Empresa" sort search>
           <div class="avatar">
-            <div class="mask mask-squircle w-12">
+            <div class="w-16 rounded">
               <img src={vaga.empresa.logo_url} />
             </div>
           </div>
