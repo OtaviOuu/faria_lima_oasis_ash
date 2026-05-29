@@ -28,7 +28,7 @@ defmodule FariaLimaOasisWeb.VagasLive.Show do
         {@vaga.empresa.name} - {@vaga.title}
       </.header>
       <%= if String.contains?(@vaga.pdf_url, ".pdf") do %>
-        <iframe src={@vaga.pdf_url} class="w-full h-full" />
+        <iframe src={@vaga.pdf_url} />
       <% else %>
         <img src={@vaga.pdf_url} alt="Vaga" class="h-2xl" />
       <% end %>
