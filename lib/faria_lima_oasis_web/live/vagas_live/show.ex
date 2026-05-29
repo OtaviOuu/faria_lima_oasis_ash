@@ -27,7 +27,11 @@ defmodule FariaLimaOasisWeb.VagasLive.Show do
         </div>
         {@vaga.empresa.name} - {@vaga.title}
       </.header>
-      <img src={@vaga.pdf_url} alt="Vaga" class="h-2xl" />
+      <%= if String.contains?(@vaga.pdf_url, ".pdf") do %>
+        <iframe src={@vaga.pdf_url} class="w-full h-full" />
+      <% else %>
+        <img src={@vaga.pdf_url} alt="Vaga" class="h-2xl" />
+      <% end %>
     </Layouts.app>
     """
   end
