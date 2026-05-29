@@ -32,7 +32,7 @@ defmodule FariaLimaOasis.Vagas.Vaga do
 
   policies do
     policy action_type([:create, :update, :destroy]) do
-      authorize_if actor_attribute_equals(:email, "oi@gmail.com")
+      authorize_if actor_attribute_equals(:is_admin, true)
     end
 
     policy action_type(:read) do
