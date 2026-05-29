@@ -116,8 +116,18 @@ defmodule FariaLimaOasisWeb.Router do
 
     scope "/admin" do
       pipe_through :browser
-
       ash_admin "/"
+    end
+  else
+    import AshAdmin.Router
+
+    scope "/admin" do
+      pipe_through :browser
+
+      ash_admin "/",
+                AshAuthentication.Phoenix.LiveSession.opts(
+                  on_mount: [{FariaLimaOasisWeb.LiveUserAuth, :live_admin_required}]
+                )
     end
   end
 end
