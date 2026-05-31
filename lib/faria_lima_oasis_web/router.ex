@@ -44,7 +44,7 @@ defmodule FariaLimaOasisWeb.Router do
       live "/empresas/:empresa_id", EmpresasLive.Show, :show
 
       live "/empresas/criar", EmpresasLive.New, :index
-
+      live "/scraper/results", ResultLive, :index
       live "/vagas/:vaga_id", VagasLive.Show, :index
       live "/adm", AdmLive, :index
     end
