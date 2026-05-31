@@ -19,6 +19,9 @@ defmodule FariaLimaOasisWeb.AdmLive do
           <.link navigate={~p"/empresas/criar"} class="btn btn-primary">
             Criar Empresa
           </.link>
+          <.link navigate={~p"/scraper/results"} class="btn btn-primary">
+            Scraper Results
+          </.link>
         </:actions>
       </.header>
     </Layouts.app>

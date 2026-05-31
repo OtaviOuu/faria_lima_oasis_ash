@@ -67,6 +67,8 @@ defmodule FariaLimaOasis.Scraper.Result do
       allow_nil? false
       constraints one_of: [:pending, :approved, :rejected]
     end
+
+    timestamps()
   end
 
   relationships do
@@ -81,5 +83,11 @@ defmodule FariaLimaOasis.Scraper.Result do
       destination_attribute :id
       source_attribute :empresa_id
     end
+  end
+
+  calculations do
+    calculate :inserted_at_humanized,
+              :string,
+              expr(fragment("to_char(?, 'DD/MM/YYYY')", inserted_at))
   end
 end
