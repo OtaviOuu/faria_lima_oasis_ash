@@ -17,7 +17,7 @@ defmodule FariaLimaOasis.Vagas.Vaga do
 
   actions do
     defaults [:read, :update, :destroy]
-    default_accept [:title, :text_content, :pdf_url, :type]
+    default_accept [:title, :text_content, :pdf_url, :type, :empresa_id]
 
     create :create do
       accept [:title, :text_content, :pdf_url, :type, :empresa_id]

@@ -27,7 +27,12 @@ defmodule FariaLimaOasisWeb.ResultLive do
             View PDF
           </a>
         </:col>
-        <:bulk_action action={:approve} label="Approve ({count})" variant={:primary} />
+        <:bulk_action
+          action={:approve}
+          action_opts={[return_records?: false, strategy: :stream]}
+          label="Approve ({count})"
+          variant={:primary}
+        />
         <:bulk_action action={:reject} label="Reject ({count})" variant={:danger} />
 
         <:controls :let={controls}>

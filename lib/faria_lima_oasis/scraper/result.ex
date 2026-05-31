@@ -24,8 +24,11 @@ defmodule FariaLimaOasis.Scraper.Result do
     end
 
     update :approve do
+      require_atomic? false
+      transaction? true
       accept []
       change set_attribute(:status, :approved)
+      change FariaLimaOasis.Scraper.Changes.ApproveResult
     end
 
     update :reject do
@@ -36,6 +39,10 @@ defmodule FariaLimaOasis.Scraper.Result do
     action :scrape_fearp, {:array, :map} do
       run FariaLimaOasis.Scraper.Actions.ScrapeFeaRp
     end
+  end
+
+  preparations do
+    prepare build(load: [:areas])
   end
 
   attributes do

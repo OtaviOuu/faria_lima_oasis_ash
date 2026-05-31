@@ -30,7 +30,7 @@ defmodule FariaLimaOasis.Scraper.Actions.ScrapeFeaRp do
       text_content: "tem n fí",
       type: "estagio",
       areas: [],
-      empresa_id: nil
+      empresa_id: "20a7e419-185e-4501-814a-6382468219f6 "
     }
   end
 
